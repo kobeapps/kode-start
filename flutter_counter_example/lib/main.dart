@@ -22,6 +22,7 @@ class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
+  final int _counter = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class MyHomePage extends StatelessWidget {
           children: [
             Text('You have pushed the button this many times:'),
             Text(
-              '0',
+              '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
