@@ -50,7 +50,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _counter++;
+          setState(() {
+            _counter++;
+          });
         },
         child: Icon(Icons.add),
       ),
