@@ -30,7 +30,12 @@ class MyHomePage extends StatelessWidget {
         title: Text(title),
       ),
       body: Center(
-        child: Text(title),
+        child: Column(
+          children: [
+            Text('You have pushed the button this many times:'),
+            Text('0'),
+          ],
+        ),
       ),
     );
   }
