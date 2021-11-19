@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(
     MaterialApp(
-      home: Text('Flutter Demo Home Page'),
+      home: Scaffold(
+        body: Text('Flutter Demo Home Page'),
+      ),
     ),
   );
 }
