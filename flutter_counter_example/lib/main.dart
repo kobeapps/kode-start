@@ -34,7 +34,10 @@ class MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('You have pushed the button this many times:'),
-            Text('0'),
+            Text(
+              '0',
+              style: Theme.of(context).textTheme.headline4,
+            ),
           ],
         ),
       ),
