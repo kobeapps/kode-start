@@ -4,4 +4,4 @@ Neste repositório se encontram os aplicativos desenvolvidos durante as aulas, o
 
 ## Links úteis
 - Dart Tour: https://dart.dev/guides/language/language-tour
-- Projects: 
+- Projects: https://github.com/kobeapps/kode-start/tree/main/projects
