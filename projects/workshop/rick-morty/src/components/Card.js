@@ -1,9 +1,9 @@
 import React from "react";
 
-const Card = ({ article }) => {
-  console.log(article);
+const Card = ({ detail }) => {
+  console.log(detail);
   const { name, firstEpisode, lastLocation, specie, status, image } =
-    article.fields;
+    detail.fields;
   return (
     <div className="cardCaracter">
       <div className="image">

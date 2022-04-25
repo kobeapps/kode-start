@@ -4,8 +4,8 @@ import Card from "./Card";
 const Cards = ({ cards }) => {
   return (
     <>
-      {cards.map((article, index) => (
-        <Card article={article} key={index} />
+      {cards.map((detail, index) => (
+        <Card detail={detail} key={index} />
       ))}
     </>
   );
