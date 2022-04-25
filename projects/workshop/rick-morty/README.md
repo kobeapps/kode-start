@@ -4,6 +4,7 @@
     <a href="https://pt-br.reactjs.org/">🔗 React</a>
 </h1>
 <p align="center">🚀 Aplicação criada para consolidar os conhecimentos adquiridos sobre o Contentful</p>
+
 ## 💻 Sobre o projeto
 
 O projeto foi desenvolvido para mostrar os dados dos personagens da série Rick and Morty.
