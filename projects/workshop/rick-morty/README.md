@@ -16,12 +16,13 @@ As informações coletadas são:
 - Last known location
 - First seen in
 
-### 🎨 Demonstração da Aplicação Web
+## 🎨 Demonstração da Aplicação Web
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
 <img alt="Detalhes dos Personagens" title="Details" src="./src/assets/card1.png" width="400px" height= "150px" />
   <img alt="Detalhes dos Personagens" title="Details" src="./src/assets/card2.png" width="400px" height= "150px" />
 </p>
+
 ## 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
