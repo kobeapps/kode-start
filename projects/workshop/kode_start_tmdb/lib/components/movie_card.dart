@@ -3,7 +3,8 @@ import 'package:kode_start_tmdb/models/paginated_movies.dart';
 import 'package:kode_start_tmdb/theme/app_colors.dart';
 
 class MovieCard extends StatelessWidget {
-  const MovieCard({required this.movie, required this.onTap, Key? key}) : super(key: key);
+  const MovieCard({required this.movie, required this.onTap, Key? key})
+      : super(key: key);
 
   final Movie movie;
   final void Function() onTap;
@@ -15,8 +16,8 @@ class MovieCard extends StatelessWidget {
     return Card(
       color: AppColors.primaryColorLight,
       clipBehavior: Clip.antiAlias,
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 7.5),
-      shape: RoundedRectangleBorder(
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7.5),
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: InkWell(

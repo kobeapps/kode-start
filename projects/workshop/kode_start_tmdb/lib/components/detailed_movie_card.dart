@@ -3,7 +3,8 @@ import 'package:kode_start_tmdb/models/detailed_movie.dart';
 import 'package:kode_start_tmdb/theme/app_colors.dart';
 
 class DetailedMovieCard extends StatelessWidget {
-  const DetailedMovieCard({required this.detailedMovie, Key? key}) : super(key: key);
+  const DetailedMovieCard({required this.detailedMovie, Key? key})
+      : super(key: key);
 
   final DetailedMovie detailedMovie;
 
@@ -11,14 +12,16 @@ class DetailedMovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final date = DateTime.parse(detailedMovie.releaseDate);
 
-    final companieNames = detailedMovie.productionCompanies.map((company) => company.name);
-    final allCompanies = companieNames.reduce((value, element) => value + ', ' + element);
+    final companieNames =
+        detailedMovie.productionCompanies.map((company) => company.name);
+    final allCompanies =
+        companieNames.reduce((value, element) => value + ', ' + element);
 
     return Card(
       color: AppColors.primaryColorLight,
       clipBehavior: Clip.antiAlias,
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 7.5),
-      shape: RoundedRectangleBorder(
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7.5),
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(
@@ -28,7 +31,8 @@ class DetailedMovieCard extends StatelessWidget {
             "https://image.tmdb.org/t/p/w1000_and_h450_multi_faces${detailedMovie.backdropPath}",
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 12, left: 16, right: 16, bottom: 20),
+            padding:
+                const EdgeInsets.only(top: 12, left: 16, right: 16, bottom: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -40,7 +44,7 @@ class DetailedMovieCard extends StatelessWidget {
                     fontSize: 14.5,
                   ),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Wrap(
                   spacing: 10,
                   runSpacing: 10,
@@ -55,7 +59,7 @@ class DetailedMovieCard extends StatelessWidget {
                       )
                       .toList(),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Text(
                   detailedMovie.overview,
                   style: TextStyle(
@@ -64,7 +68,7 @@ class DetailedMovieCard extends StatelessWidget {
                     color: AppColors.white,
                   ),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Text(
                   'Production Companies:',
                   style: TextStyle(
