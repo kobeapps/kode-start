@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kode_start_tmdb/pages/details_page.dart';
-import 'package:kode_start_tmdb/pages/home_page.dart';
+
+import 'pages/details_page.dart';
+import 'pages/home_page.dart';
 
 void main() {
-  runApp(TmdbApp());
+  runApp(const TmdbApp());
 }
 
 class TmdbApp extends StatelessWidget {
@@ -16,12 +17,12 @@ class TmdbApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: (settings) {
         switch (settings.name) {
-          case '/':
+          case HomePage.routeId:
             return MaterialPageRoute(
               settings: settings,
-              builder: (context) => HomePage(),
+              builder: (context) => const HomePage(),
             );
-          case '/details':
+          case DetailsPage.routeId:
             int movieId = settings.arguments as int;
             return MaterialPageRoute(
               settings: settings,
