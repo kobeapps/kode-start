@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kode_start_tmdb/pages/home_page.dart';
 import 'package:kode_start_tmdb/theme/app_images.dart';
 
 import '../theme/app_colors.dart';
@@ -14,6 +15,8 @@ PreferredSizeWidget appBarComponent(BuildContext context,
       alignment: Alignment.topCenter,
       child: GestureDetector(
         onTap: () {
+          final currentRoute = ModalRoute.of(context)?.settings.name;
+          if (currentRoute == HomePage.routeId) return;
           Navigator.pop(context);
         },
         child: Icon(

@@ -25,45 +25,42 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Scaffold(
-        appBar: appBarComponent(context),
-        backgroundColor: AppColors.backgroundColor,
-        body: FutureBuilder(
-          future: movies,
-          builder: (context, AsyncSnapshot<PaginatedMovies> snapshot) {
-            if (snapshot.hasData) {
-              final dataResults = snapshot.data!.results;
-              return ListView.builder(
-                padding: const EdgeInsets.symmetric(vertical: 7.5),
-                itemBuilder: (context, index) {
-                  return MovieCard(
-                    movie: dataResults[index],
-                    onTap: () {
-                      Navigator.of(context).pushNamed(
-                        DetailsPage.routeId,
-                        arguments: dataResults[index].id,
-                      );
-                    },
-                  );
-                },
-                itemCount: dataResults.length,
-              );
-            } else if (snapshot.hasError) {
-              return Center(
-                child: Text(
-                  "Ocorreu um erro.",
-                  style: TextStyle(color: AppColors.white),
-                ),
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
-        ),
+    return Scaffold(
+      appBar: appBarComponent(context),
+      backgroundColor: AppColors.backgroundColor,
+      body: FutureBuilder(
+        future: movies,
+        builder: (context, AsyncSnapshot<PaginatedMovies> snapshot) {
+          if (snapshot.hasData) {
+            final dataResults = snapshot.data!.results;
+            return ListView.builder(
+              padding: const EdgeInsets.symmetric(vertical: 7.5),
+              itemBuilder: (context, index) {
+                return MovieCard(
+                  movie: dataResults[index],
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                      DetailsPage.routeId,
+                      arguments: dataResults[index].id,
+                    );
+                  },
+                );
+              },
+              itemCount: dataResults.length,
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text(
+                "Ocorreu um erro.",
+                style: TextStyle(color: AppColors.white),
+              ),
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
     );
   }
