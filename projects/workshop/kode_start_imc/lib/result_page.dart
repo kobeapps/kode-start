@@ -1,12 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:kode_start_imc/components/app_bar_component.dart';
+import 'package:kode_start_imc/components/app_bar_widget.dart';
+import 'package:kode_start_imc/components/bottom_button_widget.dart';
 import 'package:kode_start_imc/theme/app_colors.dart';
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({Key? key, required this.height, required this.weight}) : super(key: key);
+  const ResultPage({Key? key, required this.height, required this.weight})
+      : super(key: key);
 
   final int height;
   final int weight;
@@ -14,18 +15,28 @@ class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarComponent(context, isSecondPage: true),
+      appBar: AppBarWidget(
+        leftIcon: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back,
+            color: AppColors.white,
+          ),
+        ),
+      ),
       body: Container(
         color: AppColors.black,
         width: MediaQuery.of(context).size.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                "RESULTADO",
+                'RESULTADO',
                 style: TextStyle(
                   color: AppColors.white,
                   fontSize: 14,
@@ -33,11 +44,11 @@ class ResultPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Expanded(
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.symmetric(horizontal: 20),
+                margin: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
                   color: AppColors.primaryColorLight,
                   borderRadius: BorderRadius.circular(10),
@@ -47,36 +58,29 @@ class ResultPage extends StatelessWidget {
                   children: [
                     Text(
                       _calculateIMC().toStringAsFixed(1),
-                      style: TextStyle(color: AppColors.white, fontSize: 50, fontWeight: FontWeight.w900),
+                      style: TextStyle(
+                        color: AppColors.white,
+                        fontSize: 50,
+                        fontWeight: FontWeight.w900,
+                      ),
                     ),
                     Text(
                       _resultIMC(),
-                      style: TextStyle(color: AppColors.white, fontSize: 14.5, fontWeight: FontWeight.w900),
+                      style: TextStyle(
+                        color: AppColors.white,
+                        fontSize: 14.5,
+                        fontWeight: FontWeight.w900,
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
-            SizedBox(height: 30),
-            GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Container(
-                height: 65 + MediaQuery.of(context).padding.bottom,
-                color: AppColors.primaryColorDark,
-                child: Center(
-                  child: Text(
-                    "CALCULAR NOVAMENTE",
-                    style: TextStyle(
-                      color: AppColors.white,
-                      fontSize: 14.5,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-              ),
-            )
+            const SizedBox(height: 30),
+            BottomButtonWidget(
+              title: 'CALCULAR NOVAMENTE',
+              onPressed: () => Navigator.pop(context),
+            ),
           ],
         ),
       ),
@@ -97,7 +101,7 @@ class ResultPage extends StatelessWidget {
       return 'Sobrepeso';
     } else if (imc >= 30 && imc <= 34.9) {
       return 'Obesidade Grau I';
-    } else if (imc > -35 && imc <= 39.9) {
+    } else if (imc > 35 && imc <= 39.9) {
       return 'Obesidade Grau II';
     } else {
       return 'Obesidade Grau III ou Mórbida';
