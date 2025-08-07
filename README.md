@@ -1,132 +1,150 @@
-🚀 Rick and Morty App - Desafio KOBE
-Este repositório contém a solução desenvolvida para o desafio de construção de um aplicativo móvel em Flutter para fãs de Rick and Morty, consumindo a The Rick and Morty API (REST). O foco principal foi a fidelidade ao design de alta qualidade do Figma e a aplicação de boas práticas de desenvolvimento.
+# 🚀 Rick and Morty App - Desafio KOBE
 
-🎯 O Desafio
+Este repositório contém a solução desenvolvida para o desafio de construção de um aplicativo móvel em Flutter para fãs de Rick and Morty, consumindo a [The Rick and Morty API](https://rickandmortyapi.com/) (REST).  
+O foco principal foi a **fidelidade ao design de alta qualidade do Figma** e a **aplicação de boas práticas de desenvolvimento**.
+
+---
+
+## 🎯 O Desafio
+
 O objetivo era criar um aplicativo Flutter que permitisse aos usuários:
 
-Exibir uma lista de personagens da série.
+- Exibir uma **lista de personagens** da série.
+- Visualizar **detalhes completos** de cada personagem.
+- Seguir um protótipo de **alta fidelidade** fornecido, replicando cada detalhe visual.
 
-Visualizar detalhes completos de cada personagem.
+---
 
-Seguir um protótipo de alta fidelidade fornecido, replicando cada detalhe visual.
+## ✨ Funcionalidades Implementadas
 
-✨ Funcionalidades Implementadas
-Funcionalidades Obrigatórias (Fidelidade ao Figma)
-Listagem de Personagens:
+### ✅ Funcionalidades Obrigatórias (Fidelidade ao Figma)
 
-Exibe uma lista paginada de personagens.
+#### 📋 Listagem de Personagens:
 
-Cada card de personagem apresenta a imagem e o nome em um layout sobreposto, replicando o design do Figma.
-
-A lista é vertical e permite rolagem suave.
+- Exibe uma **lista paginada** de personagens.
+- Cada card de personagem apresenta a **imagem e o nome** em um layout sobreposto, replicando o design do Figma.
+- A lista é **vertical** e permite **rolagem suave**.
 
 ![Listagem de Personagens](docs\assets\images\rolagem-ezgif.com-video-to-gif-converter.gif)
 
-Tela de Detalhes do Personagem:
+#### 👤 Tela de Detalhes do Personagem:
 
-Ao clicar em um personagem, o usuário é direcionado a uma tela com informações detalhadas.
+- Ao clicar em um personagem, o usuário é direcionado a uma tela com **informações detalhadas**.
+- Exibe: **Nome, Imagem, Status, Espécie, Gênero, Origem, Última Localização e Primeira Aparição**.
+- O **Status** é indicado por uma **bolinha colorida**:
+  - 🟢 Verde para `"Alive"`
+  - 🔴 Vermelho para `"Dead"`
+  - ⚪️ Cinza para `"Unknown"`
 
-Exibe Nome, Imagem, Status, Espécie, Gênero, Origem, Última Localização e Primeira Aparição.
+- Detalhes como **Gênero**, **Origem**, **Última Localização** e **Primeira Aparição** são apresentados no formato:
+  - `Rótulo em cima`  
+  - `Valor embaixo`, com tipografia e opacidade fiéis ao design.
 
-O Status é visualmente indicado por uma bolinha colorida (verde para "Alive", vermelho para "Dead", cinza para "Unknown"), com borda branca, conforme o Figma.
-
-Detalhes como "Gênero", "Origem", "Última Localização" e "Primeira Aparição" são apresentados em um formato de "rótulo em cima, valor embaixo", com tipografia e opacidade fiéis ao design.
-
-A Primeira Aparição (nome do episódio) é buscada dinamicamente através de uma chamada secundária à API de episódios, garantindo dados precisos.
+- A **Primeira Aparição** (nome do episódio) é buscada dinamicamente com uma **chamada secundária** à API de episódios.
 
 ![Tela de Detalhes](docs\assets\images\page_detalhes-ezgif.com-video-to-gif-converter.gif)
 
-Navegação Intuitiva:
+#### 🔁 Navegação Intuitiva:
 
-Transições suaves entre a tela de listagem e a tela de detalhes.
-
-A AppBar se adapta dinamicamente, mostrando o ícone de menu na tela inicial e o ícone de voltar na tela de detalhes.
+- **Transições suaves** entre a tela de listagem e a tela de detalhes.
+- A AppBar se adapta dinamicamente:
+  - Mostra o **ícone de menu** na tela inicial.
+  - Mostra o **ícone de voltar** na tela de detalhes.
 
 ![Navegação de Tela](docs\assets\images\movimentao-ezgif.com-video-to-gif-converter.gif)
 
-Funcionalidades Adicionais (Além do Escopo Mínimo)
-Filtros Avançados por Categoria:
+---
 
-Implementação de um sistema de filtros acessível através do ícone de menu na AppBar.
+### 💡 Funcionalidades Adicionais (Além do Escopo Mínimo)
 
-Categorias de filtro incluem Status, Espécie e Gênero.
+#### 🎛️ Filtros Avançados por Categoria:
 
-Cada categoria é um ExpansionTile (seção expansível) para melhor organização.
-
-Seleção única por categoria de filtro (RadioListTile), alinhada com as capacidades da API.
-
-Botões "Limpar Filtros" e "Aplicar Filtros" com feedback visual de clique.
+- Sistema de **filtros acessível pelo menu** (ícone na AppBar).
+- Categorias de filtro:
+  - **Status**
+  - **Espécie**
+  - **Gênero**
+- Cada categoria é um `ExpansionTile` (seção expansível).
+- **Seleção única** por categoria (RadioListTile).
+- Botões:
+  - **"Limpar Filtros"**
+  - **"Aplicar Filtros"**  
+  Com **feedback visual de clique**.
 
 ![Filtro](docs\assets\images\filtro-ezgif.com-video-to-gif-converter.gif)
 
-🛠️ Aspectos Técnicos e Decisões de Arquitetura
-Este projeto foi construído com as seguintes decisões e boas práticas:
+---
 
-Flutter & Dart: Utilização do SDK Flutter para desenvolvimento de aplicativos móveis multiplataforma, aproveitando sua flexibilidade e performance.
+## 🛠️ Aspectos Técnicos e Decisões de Arquitetura
 
-Consumo de API REST (Dio):
+### 📱 Flutter & Dart
 
-Integração com a The Rick and Morty API utilizando a biblioteca Dio para requisições HTTP, conhecida por sua robustez e interceptors.
+- Utilização do SDK Flutter para desenvolvimento de aplicativos móveis multiplataforma.
 
-A camada de Repository encapsula a lógica de chamada da API, separando-a da UI.
+### 🌐 Consumo de API REST (Dio)
 
-Lidando com dados assíncronos (FutureBuilder) para buscar o nome do episódio de "Primeira Aparição", demonstrando o tratamento de múltiplas requisições.
+- Integração com a The Rick and Morty API usando o pacote `dio`.
+- Camada de `Repository` encapsula a lógica de chamada da API.
+- Utilização de `FutureBuilder` para requisições assíncronas, especialmente para buscar o nome do episódio da **Primeira Aparição**.
 
-Arquitetura Modular:
+### 🧱 Arquitetura Modular
 
-O código é organizado em camadas claras: data (com models e repository), components (widgets reutilizáveis), pages (telas da aplicação) e theme (cores e estilos). Isso promove a separação de responsabilidades (Single Responsibility Principle) e facilita a manutenção.
+- Organização em camadas:
+  - `data` (models, repository)
+  - `components` (widgets reutilizáveis)
+  - `pages` (telas)
+  - `theme` (cores e estilos)
 
-Fidelidade ao Design (Figma - Pixel Perfect):
+- Aplicação do **Single Responsibility Principle** para facilitar manutenção e legibilidade.
 
-A AppBar foi construída com Stack e Positioned para replicar a complexidade do design de sobreposição de elementos (logo, ícones, texto) e respeitar a Safe Area do dispositivo.
+### 🎨 Fidelidade ao Design (Figma - Pixel Perfect)
 
-Os cards de personagem (CharacterCard e DetailedCharacterCard) utilizam Stack para a sobreposição de elementos (imagem e barra de nome/detalhes), com bordas arredondadas e cores exatas do Figma.
+- `AppBar` com `Stack` e `Positioned` para sobreposição de elementos.
+- Cards de personagem com `Stack` para layout visual fiel.
+- Tipografia com **Google Fonts (Lato)** ajustada `pixel a pixel`.
+- Paleta centralizada em `app_colors.dart`.
 
-Tipografia (GoogleFonts - Lato), tamanhos de fonte, pesos (Light, Regular, Medium, Bold) e espaçamentos (padding, margin, letter spacing) foram ajustados pixel a pixel para corresponder ao protótipo.
+### 🧠 Gerenciamento de Estado
 
-Cores definidas em app_colors.dart para centralizar a paleta de cores.
+- Uso de `StatefulWidgets` e `setState` para atualizar a UI eficientemente nas páginas como `HomePage` e `FilterDrawer`.
 
-Gerenciamento de Estado: Utilização de StatefulWidgets e setState para gerenciar o estado da UI de forma eficiente, especialmente na HomePage e no FilterDrawer.
+---
 
-🚀 Como Rodar o Projeto
-Para executar este projeto em sua máquina local, siga os passos abaixo:
+## 🚀 Como Rodar o Projeto
 
-Pré-requisitos
-Certifique-se de ter as seguintes ferramentas instaladas e configuradas:
+### ✅ Pré-requisitos
 
-Flutter SDK (versão estável): Guia de Instalação
+Certifique-se de ter instalado:
 
-Android Studio: Necessário para o SDK Android e para criar/gerenciar emuladores.
+- ✅ **Flutter SDK (versão estável)** – [Guia de Instalação](https://docs.flutter.dev/get-started/install)
+- ✅ **Android Studio** (com o SDK Android configurado)
+- ✅ **VS Code** (com extensões Flutter e Dart)
+- ✅ **Git**
 
-VS Code: Com as extensões Flutter e Dart instaladas.
+---
 
-Git: Para clonar o repositório.
+### ▶️ Executando o Aplicativo
 
-Executando o Aplicativo
-Navegue até a pasta do projeto:
-Abra seu terminal (ou o terminal integrado do VS Code) e navegue até a pasta raiz do projeto Flutter (rick_and_morty_app). Se você seguiu a estrutura recomendada, o caminho será algo como:
+1. **Clone o repositório:**
 
-cd kode-start/desafio_kobe/rick_and_morty_app
-
-
-Obtenha as Dependências:
-Execute o comando para baixar todas as dependências do projeto:
-
-flutter pub get
-
-Verifique o Ambiente (Opcional, mas recomendado):
-Para garantir que tudo está pronto, execute:
-
-flutter doctor
-
-Resolva quaisquer avisos ou erros relacionados ao Android SDK ou licenças, se aparecerem.
-
-Inicie um Emulador ou Conecte um Dispositivo:
-Abra o Android Studio, vá em More Actions > Device Manager e inicie um emulador Android. Alternativamente, conecte um dispositivo Android físico ao seu computador.
-
-Execute o Aplicativo:
-Com o emulador (ou dispositivo) rodando e o terminal na pasta do projeto, execute:
-
-flutter run
-
+   ```bash
+   git clone https://github.com/seu-usuario/rick_and_morty_app.git
+     ```
+2. **Acesse a pasta do projeto:**
+    ```bash
+    cd kode-start/desafio_kobe/rick_and_morty_app
+     ```
+3. **Instale as dependências:**
+    ```bash
+    flutter pub get
+     ```
+4. **Verifique o ambiente (opcional):**
+    ```bash
+    flutter doctor
+     ```
+     Resolva eventuais problemas apontados (como licenças ou SDK ausente).
+5. **Verifique o ambiente (opcional):**
+    ```bash
+    flutter run
+     ```
 O aplicativo será compilado e iniciado no dispositivo selecionado.
