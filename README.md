@@ -25,7 +25,7 @@ O objetivo era criar um aplicativo Flutter que permitisse aos usuários:
 - Cada card de personagem apresenta a **imagem e o nome** em um layout sobreposto, replicando o design do Figma.
 - A lista é **vertical** e permite **rolagem suave**.
 
-![Listagem de Personagens](docs\assets\images\rolagem-ezgif.com-video-to-gif-converter.gif)
+![Listagem de Personagens](docs/assets/images/rolagem-ezgif.com-video-to-gif-converter.gif)
 
 #### 👤 Tela de Detalhes do Personagem:
 
@@ -42,7 +42,7 @@ O objetivo era criar um aplicativo Flutter que permitisse aos usuários:
 
 - A **Primeira Aparição** (nome do episódio) é buscada dinamicamente com uma **chamada secundária** à API de episódios.
 
-![Tela de Detalhes](docs\assets\images\page_detalhes-ezgif.com-video-to-gif-converter.gif)
+![Tela de Detalhes](docs/assets/images/page_detalhes-ezgif.com-video-to-gif-converter.gif)
 
 #### 🔁 Navegação Intuitiva:
 
@@ -51,7 +51,7 @@ O objetivo era criar um aplicativo Flutter que permitisse aos usuários:
   - Mostra o **ícone de menu** na tela inicial.
   - Mostra o **ícone de voltar** na tela de detalhes.
 
-![Navegação de Tela](docs\assets\images\movimentao-ezgif.com-video-to-gif-converter.gif)
+![Navegação de Tela](docs/assets/images/movimentao-ezgif.com-video-to-gif-converter.gif)
 
 ---
 
@@ -71,7 +71,7 @@ O objetivo era criar um aplicativo Flutter que permitisse aos usuários:
   - **"Aplicar Filtros"**  
   Com **feedback visual de clique**.
 
-![Filtro](docs\assets\images\filtro-ezgif.com-video-to-gif-converter.gif)
+![Filtro](docs/assets/images/filtro-ezgif.com-video-to-gif-converter.gif)
 
 ---
 
