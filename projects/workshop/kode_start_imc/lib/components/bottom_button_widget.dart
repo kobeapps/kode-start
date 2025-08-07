@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:kode_start_imc/theme/app_colors.dart';
 
-class BottomButtonWidget extends StatelessWidget {
+class BottomlabelLargeWidget extends StatelessWidget {
   const BottomButtonWidget({
     Key? key,
     required this.onPressed,
@@ -14,7 +14,7 @@ class BottomButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final paddingBottom = MediaQuery.of(context).padding.bottom;
-    return CupertinoButton(
+    return CupertinolabelLarge(
       padding: EdgeInsets.zero,
       onPressed: onPressed,
       child: Container(

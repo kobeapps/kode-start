@@ -6,7 +6,7 @@ import 'package:kode_start_imc/components/user_input_widget.dart';
 import 'package:kode_start_imc/result_page.dart';
 import 'package:kode_start_imc/theme/app_colors.dart';
 
-import 'components/bottom_button_widget.dart';
+import 'components/bottom_labelLarge_widget.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -97,7 +97,7 @@ class _MainPageState extends State<MainPage> {
               measureUnit: 'kg',
             ),
             const Spacer(),
-            BottomButtonWidget(
+            BottomlabelLargeWidget(
               title: 'CALCULAR O RESULTADO',
               onPressed: () {
                 Navigator.push(

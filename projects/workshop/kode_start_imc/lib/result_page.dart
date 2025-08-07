@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:kode_start_imc/components/app_bar_widget.dart';
-import 'package:kode_start_imc/components/bottom_button_widget.dart';
+import 'package:kode_start_imc/components/bottom_labelLarge_widget.dart';
 import 'package:kode_start_imc/theme/app_colors.dart';
 
 class ResultPage extends StatelessWidget {
@@ -77,7 +77,7 @@ class ResultPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30),
-            BottomButtonWidget(
+            BottomlabelLargeWidget(
               title: 'CALCULAR NOVAMENTE',
               onPressed: () => Navigator.pop(context),
             ),
