@@ -3,19 +3,21 @@ import 'package:rick_morty_thiago_arend/theme/app_colors.dart';
 import 'package:rick_morty_thiago_arend/theme/app_images.dart';
 import 'package:rick_morty_thiago_arend/theme/app_strings.dart';
 
-PreferredSizeWidget appBarComponent(
-  BuildContext context, {
-  bool isSecondPage = false,
-}) {
+PreferredSizeWidget appBarComponent(BuildContext context) {
+  final currentRoute = ModalRoute.of(context)?.settings.name;
+
   return AppBar(
-    toolbarHeight: kToolbarHeight * 2.4,
+    toolbarHeight: kToolbarHeight * 2.2,
     backgroundColor: AppColors.appBarColor,
     leading: Align(
       alignment: Alignment.topCenter,
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          if (currentRoute == '/') return;
+          Navigator.of(context).pop();
+        },
         child: Icon(
-          isSecondPage ? Icons.arrow_back : Icons.menu,
+          (currentRoute != '/') ? Icons.arrow_back : Icons.menu,
           color: AppColors.white,
         ),
       ),
