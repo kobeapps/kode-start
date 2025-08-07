@@ -1,337 +1,132 @@
-# Kode Start by Kobe
+🚀 Rick and Morty App - Desafio KOBE
+Este repositório contém a solução desenvolvida para o desafio de construção de um aplicativo móvel em Flutter para fãs de Rick and Morty, consumindo a The Rick and Morty API (REST). O foco principal foi a fidelidade ao design de alta qualidade do Figma e a aplicação de boas práticas de desenvolvimento.
 
-Neste repositório se encontram os aplicativos desenvolvidos durante as aulas, outros projetos desenvolvidos ao longo do programa e, também, documentações
+🎯 O Desafio
+O objetivo era criar um aplicativo Flutter que permitisse aos usuários:
 
-## Links úteis
-- Dart Tour: https://dart.dev/guides/language/language-tour
-- Projects: https://github.com/kobeapps/kode-start/tree/main/projects
+Exibir uma lista de personagens da série.
 
-## Dart
-Dart é uma linguagem de programação lançada primeiramente em 2011, sua aplicação inicial era substituir o JavaScript como linguagem principal de desenvolvimento Web. Hoje em dia seu principal uso é através do framework Flutter.
+Visualizar detalhes completos de cada personagem.
 
-É uma linguagem estaticamente tipada, isto é, após um tipo ser atribuído o mesmo não pode mais ser alterado. Sua estrutura é muito parecida com a do Java.
+Seguir um protótipo de alta fidelidade fornecido, replicando cada detalhe visual.
 
-## Hello World
-Uma ótima maneira de entender a estrutura básica de uma linguagem é conhecendo como fazer o mais básico e conhecido dos códigos, o "Hello World". Sua estrutura em dart é desta maneira:
+✨ Funcionalidades Implementadas
+Funcionalidades Obrigatórias (Fidelidade ao Figma)
+Listagem de Personagens:
 
-    void main() {
-     print('Olá, Mundo!');
-    }
+Exibe uma lista paginada de personagens.
 
-## Comentários
-    // Para adicionar um comentário basta escrevê-lo desta maneira.
-    
-    /*
-    Mas se tiver que falar muita coisa
-    Você pode escrever desta maneira
-    */
-    
-    /// E se quiser documentar uma função ou classe escreva assim.
+Cada card de personagem apresenta a imagem e o nome em um layout sobreposto, replicando o design do Figma.
 
-## Fortemente tipada:
-Dart é fortemente tipada, mas por sua vez não é necessário definir os tipos explicitamente, podendo se utilizar. Por exemplo ao atribuir a variável:
+A lista é vertical e permite rolagem suave.
 
-    var value = 1;
+![Listagem de Personagens](docs\assets\images\rolagem-ezgif.com-video-to-gif-converter.gif)
 
-value é inferido como sendo um inteiro. Logo atribuir um valor de um tipo diferente na sequência, como um booleano, resultará em um erro.
+Tela de Detalhes do Personagem:
 
-    var value = 1;
-    value = false; //Erro
+Ao clicar em um personagem, o usuário é direcionado a uma tela com informações detalhadas.
 
-Se por alguma necessidade for necessário que o tipo seja dinâmico, existe um tipo especial que foge desta regra, o dynamic, que permite fazer essas atribuições. Porém perdem-se todos os benefícios de uma linguagem fortemente tipada e aumenta e muito a chance de alguma atribuição errada passar despercebida.
+Exibe Nome, Imagem, Status, Espécie, Gênero, Origem, Última Localização e Primeira Aparição.
 
-    dynamic value = 1;
-    value = false;
+O Status é visualmente indicado por uma bolinha colorida (verde para "Alive", vermelho para "Dead", cinza para "Unknown"), com borda branca, conforme o Figma.
 
-## Palavras-chave
+Detalhes como "Gênero", "Origem", "Última Localização" e "Primeira Aparição" são apresentados em um formato de "rótulo em cima, valor embaixo", com tipografia e opacidade fiéis ao design.
 
-Se você quer que uma variável nunca seja alterada deve-se usar final ou const, em vez de usar var ou somente o tipo. Uma variável definida como final pode ter seu valor definido apenas uma vez, já uma variável const é uma constante de tempo de compilação. (Uma variável const é implicitamente final)
+A Primeira Aparição (nome do episódio) é buscada dinamicamente através de uma chamada secundária à API de episódios, garantindo dados precisos.
 
-Se a constante estiver em uma classe deve ser marcado como static const, assim a mesma variável será compartilhada por todas as instâncias da classe e também ser acessível sem instanciar a classe.
+![Tela de Detalhes](docs\assets\images\page_detalhes-ezgif.com-video-to-gif-converter.gif)
 
-    final name = 'Bob';
-    final String nickname = 'Bobby';
+Navegação Intuitiva:
 
-  
+Transições suaves entre a tela de listagem e a tela de detalhes.
 
-    class DetailsPage {
-     static const routeName = '/details';
-    }
+A AppBar se adapta dinamicamente, mostrando o ícone de menu na tela inicial e o ícone de voltar na tela de detalhes.
 
-## Tipos de variáveis
+![Navegação de Tela](docs\assets\images\movimentao-ezgif.com-video-to-gif-converter.gif)
 
-### Números:
+Funcionalidades Adicionais (Além do Escopo Mínimo)
+Filtros Avançados por Categoria:
 
-Dart possui int e double que são subtipos de num;
+Implementação de um sistema de filtros acessível através do ícone de menu na AppBar.
 
-    int a = 1;
-    double b = 0.1;
-    num c = a + b;
+Categorias de filtro incluem Status, Espécie e Gênero.
 
-### Booleanos:
+Cada categoria é um ExpansionTile (seção expansível) para melhor organização.
 
-    bool a = true;
-    bool b = false;
+Seleção única por categoria de filtro (RadioListTile), alinhada com as capacidades da API.
 
-### Strings:
+Botões "Limpar Filtros" e "Aplicar Filtros" com feedback visual de clique.
 
-Strings podem ser atribuidas com aspas simples ou duplas
+![Filtro](docs\assets\images\filtro-ezgif.com-video-to-gif-converter.gif)
 
-    String a = 'a';
-    String b = "b";
+🛠️ Aspectos Técnicos e Decisões de Arquitetura
+Este projeto foi construído com as seguintes decisões e boas práticas:
 
-A interpolação pode ser feita usando um cifrão
+Flutter & Dart: Utilização do SDK Flutter para desenvolvimento de aplicativos móveis multiplataforma, aproveitando sua flexibilidade e performance.
 
-    int number = 1;
-    String text = "$number";
+Consumo de API REST (Dio):
 
-No caso de ser uma expressão é necessário adicionar chaves.
+Integração com a The Rick and Morty API utilizando a biblioteca Dio para requisições HTTP, conhecida por sua robustez e interceptors.
 
-    int number = 1;
-    String text = "${number.isEven}";
+A camada de Repository encapsula a lógica de chamada da API, separando-a da UI.
 
-### Listas:
+Lidando com dados assíncronos (FutureBuilder) para buscar o nome do episódio de "Primeira Aparição", demonstrando o tratamento de múltiplas requisições.
 
-    var list = [1, 2, 3];
-    var list2 = [...list];
-    
-    var nav = [
-     'Home',
-     'Furniture',
-     'Plants',
-     if (promoActive) 'Outlet',
-     promoActive ? 'Sale' : 'Normal
-    ];
+Arquitetura Modular:
 
-### Mapas/Dicionários:
-
-    var nobleGases = {
-     2: 'helium',
-     10: 'neon',
-     18: 'argon',
-    };
+O código é organizado em camadas claras: data (com models e repository), components (widgets reutilizáveis), pages (telas da aplicação) e theme (cores e estilos). Isso promove a separação de responsabilidades (Single Responsibility Principle) e facilita a manutenção.
 
-### Generics:
+Fidelidade ao Design (Figma - Pixel Perfect):
 
-Tipos como listas e mapas possuem possibilidade de utilizar generics para definir os tipos de seus valores internos.
+A AppBar foi construída com Stack e Positioned para replicar a complexidade do design de sobreposição de elementos (logo, ícones, texto) e respeitar a Safe Area do dispositivo.
 
-    List<dynamic> myList;
-    Map<dynamic, dynamic> myMap;
-    
-    List<int> myList;
-    Map<String, bool> myMap;
+Os cards de personagem (CharacterCard e DetailedCharacterCard) utilizam Stack para a sobreposição de elementos (imagem e barra de nome/detalhes), com bordas arredondadas e cores exatas do Figma.
 
-## Propriedades privadas:
+Tipografia (GoogleFonts - Lato), tamanhos de fonte, pesos (Light, Regular, Medium, Bold) e espaçamentos (padding, margin, letter spacing) foram ajustados pixel a pixel para corresponder ao protótipo.
 
-Em Dart não existem palavras como public, protected, e private, para definir uma variável, função ou classe como privada e que só possa ser acessada dentro de determinado contexto basta que seu nome comece com um underline (_);
-
-    class _Class {}
-    var _variable;
-    void _function(){}
-
-## Controle de fluxo e repetição
+Cores definidas em app_colors.dart para centralizar a paleta de cores.
 
-    if (year >= 2001) {
-     print('21st century');
-    } else if (year >= 1901) {
-     print('20th century');
-    }
-    
-    final maior = a > b ? a : b;
-    
-    switch (expression) {
-     case value1:
-     // Code to execute if expression matches value1
-     break;
-     case value2:
-     // Code to execute if expression matches value2
-     break;
-     // ... more cases
-     default:
-     // Code to execute if no case matches
-     break;
-    }
+Gerenciamento de Estado: Utilização de StatefulWidgets e setState para gerenciar o estado da UI de forma eficiente, especialmente na HomePage e no FilterDrawer.
 
-    for (final object in flybyObjects) {
-     print(object);
-    }
+🚀 Como Rodar o Projeto
+Para executar este projeto em sua máquina local, siga os passos abaixo:
 
-    for (int month = 1; month <= 12; month++) {
-     print(month);
-    }
+Pré-requisitos
+Certifique-se de ter as seguintes ferramentas instaladas e configuradas:
 
-    while (year < 2016) {
-     year += 1;
-    }
-
-  
-
-## Null safety:
-
-Dart recentemente recebeu suporte a null safety, isso significa que é possível definir quais variáveis podem ou não receber null. O que tornou o seu analisador muito mais eficiente não permitindo que uma variável seja utilizada antes de ser definida.
-
-    void main() {
-     int value;
-     value = 0;
-     print(value);
-    }
-
-Dependendo do contexto de declaração de uma variável é necessário utilizar a palavra-chave late. Isto só é necessário em casos que o próprio Dart não consegue detectar previamente que uma variável será definida antes de ser executada.
-
-    late int value;
-
-    void main() {    
-     value = 0;    
-     print(value);    
-    }
-
-E quando esta variável pode ser nula, mas quando iremos utilizá-la, a mesma já terá seu valor definido, podemos usar uma exclamação.
-
-    int? value;
-        
-    void main() {    
-     value = 0;    
-     print(value!.toDouble());    
-    }
-
-E se quisermos que uma variável seja nula? Basta Adicionar uma interrogação junto ao tipo.
-
-    String? value;
-
-Além do null safety, o Dart também possui operadores null-aware.
-
-    main() async {
-     String? value;
-     String? trimmedValue = value?.trim();
-     String secondValue = value ?? '';
-    }
-
-  
-
-## Parâmetros:
-
-Dart dá suporte a parâmetros obrigatórios, opcionais, nomeados e posicionais.
-
-    void enableFlags({required bool bold, bool? hidden}) {...}
-    void enableFlags({required bool bold, bool hidden = false}) {...}
-    enableFlags(bold: true, hidden: false);
-
-    String say(String from, String msg, [String? device]) {
-     var result = '$from says $msg';
-     if (device != null) {
-     result = '$result with a $device';
-     }
-     return result;
-    }
-    
-    assert(say('Bob', 'Howdy') == 'Bob says Howdy');
-    assert(say('Bob', 'Howdy', 'smoke signal') == 'Bob says Howdy with a smoke signal');
-
-## Funções:
-
-Dart possui suporte a funções nomeadas e anônimas, arrow functions, inclusive declaração como variáveis com tipagem de retorno e de parâmetros.
-
-    int sum(int a, int b) {return a + b;}
-    int sum2(int a, int b) => a + b;
-    int Function (int, int) sum3;
-    sum3 = (int a, int b) => a + b;
-
-  
-
-    const list = ['apples', 'bananas', 'oranges'];
-    list.forEach((item) {
-     print('${list.indexOf(item)}: $item');
-    });
-
-  
-
-## Classes:
-
-Possui classes abstratas, uso de implements e extends, além de enums e extensions.
-
-    import 'dart:math';
-
-    class Point {
-     static const double xOrigin = 0;
-     static const double yOrigin = 0;
-     double x;
-     double y;
-     Point(this.x, this.y);
-    
-     // Named constructor
-    
-     Point.origin()
-     : x = xOrigin,
-     y = yOrigin;
-     double distanceToOrigin() {
-     return sqrt(x * x + y * y);
-     }
-    }
-    
-      
-    
-    class Point3d extends Point {
-     static const double zOrigin = 0;
-     double z;
-     Point3d(double x, double y, this.z) : super(x, y);
-     
-     // Named constructor
-     Point3d.origin(): z = zOrigin, super.origin();
-
-     @override
-     double distanceToOrigin() {
-     return sqrt(x * x + y * y + z * z);
-     }
-    }
-
-    main() {
-     var a = Point(1, 2);
-     var b = Point.origin();
-     var c = Point(Point.xOrigin, 2);
-     print(a.distanceToOrigin());
-    }
-
-  
-
-## Enum:
-
-    enum SelectedColor {
-     primaryColor,
-     secondaryColor,
-    }
-    
-    extension SelectedColorExtension on SelectedColor {
-     String get name => describeEnum(this);
-     String get displayTitle {
-     switch (this) {
-     case SelectedColor.PrimaryColor:
-     return 'This is the Primary Color';
-     case SelectedColor.SecondaryColor:
-     return 'This is the Secondary Color';
-     default:
-     return 'SelectedScheme Title is null';
-     }
-     }
-    }
-
-## Async e Await
-
-Utilização para tarefas que devem ser feitas de forma assíncrona.
-
-    main() async {
-     try {
-     var value = await Future.delayed(Duration(seconds: 1));
-     print(value.a);
-     } catch (e) {
-     print(e);
-     }
-    }
-
-    main() {
-    Future.delayed(Duration(seconds: 1))
-     .then(
-     (value) => print(value.a),
-     )
-     .catchError((error)=>print(error));
-    }
+Flutter SDK (versão estável): Guia de Instalação
 
+Android Studio: Necessário para o SDK Android e para criar/gerenciar emuladores.
+
+VS Code: Com as extensões Flutter e Dart instaladas.
+
+Git: Para clonar o repositório.
+
+Executando o Aplicativo
+Navegue até a pasta do projeto:
+Abra seu terminal (ou o terminal integrado do VS Code) e navegue até a pasta raiz do projeto Flutter (rick_and_morty_app). Se você seguiu a estrutura recomendada, o caminho será algo como:
+
+cd kode-start/desafio_kobe/rick_and_morty_app
+
+
+Obtenha as Dependências:
+Execute o comando para baixar todas as dependências do projeto:
+
+flutter pub get
+
+Verifique o Ambiente (Opcional, mas recomendado):
+Para garantir que tudo está pronto, execute:
+
+flutter doctor
+
+Resolva quaisquer avisos ou erros relacionados ao Android SDK ou licenças, se aparecerem.
+
+Inicie um Emulador ou Conecte um Dispositivo:
+Abra o Android Studio, vá em More Actions > Device Manager e inicie um emulador Android. Alternativamente, conecte um dispositivo Android físico ao seu computador.
+
+Execute o Aplicativo:
+Com o emulador (ou dispositivo) rodando e o terminal na pasta do projeto, execute:
+
+flutter run
+
+O aplicativo será compilado e iniciado no dispositivo selecionado.
