@@ -13,7 +13,7 @@ class LocationModel {
 
   factory LocationModel.fromJson(Map<String, dynamic> json) {
     return LocationModel(
-      id: json['id'],
+      id: (json['id'] as num?)?.toInt() ?? 0,
       name: json['name']?.toString() ?? '',
       type: json['type']?.toString() ?? '',
       dimension: json['dimension']?.toString() ?? '',

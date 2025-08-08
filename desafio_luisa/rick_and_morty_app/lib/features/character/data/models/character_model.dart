@@ -24,23 +24,23 @@ class CharacterModel {
   final String firstEpisodeUrl;
 
   factory CharacterModel.fromJson(Map<String, dynamic> json) {
-    final episodeList = json['episode'] as List;
+    final episodeList = (json['episode'] as List?) ?? [];
     final firstEpisode = episodeList.isNotEmpty
         ? episodeList.first.toString()
         : '';
 
     return CharacterModel(
-      id: json['id'] as int,
+      id: (json['id'] as num?)?.toInt() ?? 0,
       name: json['name']?.toString() ?? '',
       image: json['image']?.toString() ?? '',
       species: json['species']?.toString() ?? '',
       gender: json['gender']?.toString() ?? '',
       status: json['status']?.toString() ?? '',
       origin: OriginModel.fromJson(
-        json['origin'] as Map<String, dynamic>,
-      ), // verificar se eh map
+        (json['origin'] as Map<String, dynamic>?) ?? {},
+      ),
       location: CharacterLocationModel.fromJson(
-        json['location'] as Map<String, dynamic>,
+        (json['location'] as Map<String, dynamic>?) ?? {},
       ),
       firstEpisodeUrl: firstEpisode,
     );

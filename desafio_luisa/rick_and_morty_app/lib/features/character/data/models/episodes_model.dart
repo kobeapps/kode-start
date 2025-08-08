@@ -13,7 +13,7 @@ class EpisodesModel {
 
   factory EpisodesModel.fromJson(Map<String, dynamic> json) {
     return EpisodesModel(
-      id: json['id'] as int,
+      id: (json['id'] as num?)?.toInt() ?? 0,
       name: json['name']?.toString() ?? '',
       date: json['air_date']?.toString() ?? '',
       episode: json['episode']?.toString() ?? '',
