@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../themes/app_colors.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const AppBarWidget({super.key});
@@ -23,7 +24,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                   'RICK AND MORTY API',
                   style: TextStyle(
                     fontFamily: 'Lato',
-                    color: Colors.white,
+                    color: AppColors.text,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
