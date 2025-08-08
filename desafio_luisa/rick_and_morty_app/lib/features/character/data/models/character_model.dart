@@ -1,34 +1,45 @@
 import 'package:rick_and_morty_app/features/character/data/models/models.dart';
-import 'package:rick_and_morty_app/features/character/domain/entities/entities.dart';
 
-class CharacterModel extends Character {
-  const CharacterModel({
-    required super.id,
-    required super.name,
-    required super.image,
-    required super.species,
-    required super.gender,
-    required super.status,
-    required super.origin,
-    required super.location,
-    required super.firstEpisodeUrl,
+class CharacterModel {
+  CharacterModel({
+    required this.id,
+    required this.name,
+    required this.image,
+    required this.species,
+    required this.gender,
+    required this.status,
+    required this.origin,
+    required this.location,
+    required this.firstEpisodeUrl,
   });
+
+  final int id;
+  final String name;
+  final String image;
+  final String species;
+  final String gender;
+  final String status;
+  final OriginModel origin;
+  final CharacterLocationModel location;
+  final String firstEpisodeUrl;
 
   factory CharacterModel.fromJson(Map<String, dynamic> json) {
     final episodeList = json['episode'] as List;
     final firstEpisode = episodeList.isNotEmpty
-        ? episodeList.first as String
+        ? episodeList.first.toString()
         : '';
 
     return CharacterModel(
       id: json['id'] as int,
-      name: json['name'] as String,
-      image: json['image'] as String,
-      species: json['species'] as String,
-      gender: json['gender'] as String,
-      status: json['status'] as String,
-      origin: OriginModel.fromJson(json['origin'] as Map<String, dynamic>),
-      location: LocationModel.fromJson(
+      name: json['name']?.toString() ?? '',
+      image: json['image']?.toString() ?? '',
+      species: json['species']?.toString() ?? '',
+      gender: json['gender']?.toString() ?? '',
+      status: json['status']?.toString() ?? '',
+      origin: OriginModel.fromJson(
+        json['origin'] as Map<String, dynamic>,
+      ), // verificar se eh map
+      location: CharacterLocationModel.fromJson(
         json['location'] as Map<String, dynamic>,
       ),
       firstEpisodeUrl: firstEpisode,

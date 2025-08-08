@@ -1,9 +1,13 @@
-import 'package:rick_and_morty_app/features/character/domain/entities/entities.dart';
+class OriginModel {
+  OriginModel({required this.name, required this.url});
 
-class OriginModel extends CharacterOrigin {
-  const OriginModel({required super.name});
+  final String name;
+  final String url;
 
   factory OriginModel.fromJson(Map<String, dynamic> json) {
-    return OriginModel(name: json['name'] as String);
+    return OriginModel(
+      name: json['name']?.toString() ?? '',
+      url: json['url']?.toString() ?? '',
+    );
   }
 }

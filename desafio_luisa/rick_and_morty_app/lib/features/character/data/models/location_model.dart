@@ -1,9 +1,22 @@
-import 'package:rick_and_morty_app/features/character/domain/entities/entities.dart';
+class LocationModel {
+  LocationModel({
+    required this.id,
+    required this.name,
+    required this.type,
+    required this.dimension,
+  });
 
-class LocationModel extends CharacterLocation {
-  const LocationModel({required super.name});
+  final int id;
+  final String name;
+  final String type;
+  final String dimension;
 
   factory LocationModel.fromJson(Map<String, dynamic> json) {
-    return LocationModel(name: json['name'] as String);
+    return LocationModel(
+      id: json['id'],
+      name: json['name']?.toString() ?? '',
+      type: json['type']?.toString() ?? '',
+      dimension: json['dimension']?.toString() ?? '',
+    );
   }
 }
