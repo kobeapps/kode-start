@@ -46,3 +46,10 @@ class CharacterModel {
     );
   }
 }
+
+class CharacterResponse {
+  final List<CharacterModel> characters;
+  final String? nextPageUrl;
+
+  CharacterResponse({required this.characters, this.nextPageUrl});
+}

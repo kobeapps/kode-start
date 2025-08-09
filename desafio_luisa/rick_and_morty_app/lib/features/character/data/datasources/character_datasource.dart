@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:rick_and_morty_app/features/character/data/models/models.dart';
 
 abstract class CharacterDatasource {
-  Future<List<CharacterModel>> getCharacterFromApi({String? query});
+  Future<CharacterResponse> getCharacterFromApi({String? query, String? url});
   Future<EpisodesModel> getEpisodeByUrl(String url);
 }
 
@@ -12,15 +12,18 @@ class CharacterDatasourceImpl implements CharacterDatasource {
   CharacterDatasourceImpl({required Dio dio}) : _dio = dio;
 
   @override
-  Future<List<CharacterModel>> getCharacterFromApi({String? query}) async {
-    String url = 'https://rickandmortyapi.com/api/character';
+  Future<CharacterResponse> getCharacterFromApi({
+    String? query,
+    String? url,
+  }) async {
+    String finalUrl = url ?? 'https://rickandmortyapi.com/api/character';
 
     if (query != null && query.isNotEmpty) {
-      url += '/?name=$query';
+      finalUrl += '/?name=$query';
     }
 
     try {
-      final response = await _dio.get(url);
+      final response = await _dio.get(finalUrl);
 
       final results = response.data['results'] as List;
 
@@ -28,13 +31,18 @@ class CharacterDatasourceImpl implements CharacterDatasource {
           .map((json) => CharacterModel.fromJson(json))
           .toList();
 
-      return characters;
+      final nextPageUrl = response.data['info']['next'] as String?;
+
+      return CharacterResponse(
+        characters: characters,
+        nextPageUrl: nextPageUrl,
+      );
     } on DioException catch (e) {
       print('Erro de Dio ao buscar os personagens: $e');
       throw Exception('Falha na comunicação com o servidor');
     } catch (e) {
       if (e is DioException && e.response?.statusCode == 404) {
-        return [];
+        return CharacterResponse(characters: [], nextPageUrl: null);
       }
       print('Erro inesperado: $e');
       throw Exception('Ocorreu um erro inesperado');

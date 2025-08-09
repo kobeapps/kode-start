@@ -23,7 +23,10 @@ class CharacterCardWidget extends GetView<CharacterController> {
           );
         } else {
           return ListView.builder(
-            itemCount: controller.characters.length,
+            controller: controller.scrollController,
+            itemCount:
+                controller.characters.length +
+                (controller.isLoadingMore.value ? 1 : 0),
             itemBuilder: (context, index) {
               final character = controller.characters[index];
               return Card(
