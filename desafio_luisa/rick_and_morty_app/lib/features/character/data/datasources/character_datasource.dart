@@ -3,6 +3,7 @@ import 'package:rick_and_morty_app/features/character/data/models/models.dart';
 
 abstract class CharacterDatasource {
   Future<List<CharacterModel>> getCharacterFromApi();
+  Future<EpisodesModel> getEpisodeByUrl(String url);
 }
 
 class CharacterDatasourceImpl implements CharacterDatasource {
@@ -30,6 +31,20 @@ class CharacterDatasourceImpl implements CharacterDatasource {
     } catch (e) {
       print('Erro inesperado: $e');
       throw Exception('Ocorreu um erro inesperado');
+    }
+  }
+
+  @override
+  Future<EpisodesModel> getEpisodeByUrl(String url) async {
+    try {
+      final response = await _dio.get(url);
+
+      final episode = EpisodesModel.fromJson(response.data);
+
+      return episode;
+    } catch (e) {
+      print('Não foi possivel buscar episódio');
+      throw Exception('Falha ao buscar dados do episódio');
     }
   }
 }

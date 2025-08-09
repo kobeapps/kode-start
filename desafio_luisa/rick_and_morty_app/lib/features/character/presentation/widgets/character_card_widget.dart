@@ -4,6 +4,7 @@ import 'package:rick_and_morty_app/core/constants/ui_constants.dart';
 import 'package:rick_and_morty_app/core/theme/app_colors.dart';
 import 'package:rick_and_morty_app/core/theme/app_text_style.dart';
 import 'package:rick_and_morty_app/features/character/data/controllers/character_controller.dart';
+import 'package:rick_and_morty_app/features/character/presentation/pages/character_details_page.dart';
 
 class CharacterCardWidget extends StatelessWidget {
   const CharacterCardWidget({super.key});
@@ -35,7 +36,7 @@ class CharacterCardWidget extends StatelessWidget {
                 color: AppColors.card,
                 child: InkWell(
                   onTap: () {
-                    print('cliquei no ${character.name}');
+                    Get.to(() => CharacterDetailsPage(), arguments: character);
                   },
                   child: Stack(
                     children: [
@@ -43,7 +44,7 @@ class CharacterCardWidget extends StatelessWidget {
                         character.image,
                         height: UiConstants.heightCardHomePage,
                         width: double.infinity,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fill,
                       ),
                       Positioned(
                         bottom: 0,

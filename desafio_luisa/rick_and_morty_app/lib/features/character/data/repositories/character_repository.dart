@@ -3,6 +3,7 @@ import 'package:rick_and_morty_app/features/character/data/models/models.dart';
 
 abstract class CharacterRepository {
   Future<List<CharacterModel>> getCharacters();
+  Future<EpisodesModel> getEpisode(String url);
 }
 
 class CharacterRepositoryImpl implements CharacterRepository {
@@ -16,6 +17,17 @@ class CharacterRepositoryImpl implements CharacterRepository {
       final characterModels = await datasource.getCharacterFromApi();
 
       return characterModels;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  @override
+  Future<EpisodesModel> getEpisode(String url) async {
+    try {
+      final episode = await datasource.getEpisodeByUrl(url);
+
+      return episode;
     } catch (e) {
       throw Exception(e);
     }

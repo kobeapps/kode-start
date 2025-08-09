@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Rick and Morty APP',
       home: const HomePage(),
       debugShowCheckedModeBanner: false,

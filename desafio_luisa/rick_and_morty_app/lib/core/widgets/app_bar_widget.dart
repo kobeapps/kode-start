@@ -5,9 +5,14 @@ import 'package:rick_and_morty_app/core/theme/app_images.dart';
 import 'package:rick_and_morty_app/core/theme/app_text_style.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarWidget({super.key, required this.trailingIcon});
+  const AppBarWidget({
+    super.key,
+    required this.trailingIcon,
+    required this.trailingFunction,
+  });
 
   final IconData trailingIcon;
+  final VoidCallback trailingFunction;
 
   @override
   Size get preferredSize => Size.fromHeight(131);
@@ -22,10 +27,13 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(
-              trailingIcon,
-              color: AppColors.icon,
-              size: UiConstants.iconSize,
+            InkWell(
+              onTap: trailingFunction,
+              child: Icon(
+                trailingIcon,
+                color: AppColors.icon,
+                size: UiConstants.iconSize,
+              ),
             ),
             Column(
               children: [

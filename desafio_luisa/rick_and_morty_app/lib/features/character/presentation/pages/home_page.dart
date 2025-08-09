@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBarWidget(trailingIcon: Icons.menu),
+      appBar: AppBarWidget(trailingIcon: Icons.menu, trailingFunction: () {}),
       body: CharacterCardWidget(),
     );
   }
