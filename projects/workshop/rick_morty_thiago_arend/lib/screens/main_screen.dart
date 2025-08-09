@@ -30,7 +30,7 @@ class _MainScreenState extends State<MainScreen> {
         itemCount: cards.length,
         itemBuilder: (ctx, index) => cards[index],
       ),
-      backgroundColor: AppColors.black,
+      backgroundColor: AppColors.backgroundColor,
     );
   }
 }

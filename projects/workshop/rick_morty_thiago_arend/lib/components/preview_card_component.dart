@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rick_morty_thiago_arend/app_routes.dart';
 import 'package:rick_morty_thiago_arend/theme/app_colors.dart';
 
 class PreviewCardComponent extends StatelessWidget {
@@ -9,7 +10,8 @@ class PreviewCardComponent extends StatelessWidget {
     final double screenWidth = MediaQuery.of(context).size.width;
 
     return GestureDetector(
-      onTap: () => Navigator.of(context).pushNamed('/characterDetails'),
+      onTap: () =>
+          Navigator.of(context).pushNamed(AppRoutes.characterDetailsScreen),
       child: Padding(
         padding: EdgeInsetsGeometry.fromLTRB(20, 15, 20, 0),
         child: Stack(
@@ -44,6 +46,7 @@ class PreviewCardComponent extends StatelessWidget {
                 style: TextStyle(
                   color: AppColors.white,
                   fontWeight: FontWeight.w900,
+                  fontSize: 14
                 ),
               ),
             ),

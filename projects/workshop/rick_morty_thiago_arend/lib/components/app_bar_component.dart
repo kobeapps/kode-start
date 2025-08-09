@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rick_morty_thiago_arend/app_routes.dart';
 import 'package:rick_morty_thiago_arend/theme/app_colors.dart';
 import 'package:rick_morty_thiago_arend/theme/app_images.dart';
 import 'package:rick_morty_thiago_arend/theme/app_strings.dart';
@@ -13,11 +14,13 @@ PreferredSizeWidget appBarComponent(BuildContext context) {
       alignment: Alignment.topCenter,
       child: GestureDetector(
         onTap: () {
-          if (currentRoute == '/') return;
+          if (currentRoute == AppRoutes.homeScreen) return;
           Navigator.of(context).pop();
         },
         child: Icon(
-          (currentRoute != '/') ? Icons.arrow_back : Icons.menu,
+          (currentRoute == AppRoutes.characterDetailsScreen)
+              ? Icons.arrow_back
+              : Icons.menu,
           color: AppColors.white,
         ),
       ),
