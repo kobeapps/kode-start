@@ -88,7 +88,7 @@ class CharacterDetailsPage extends StatelessWidget {
                         ),
                         SizedBox(width: 8),
                         Text(
-                          '${character.status} - ${character.species}',
+                          '${character.status[0].toUpperCase()}${character.status.substring(1)} - ${character.species} - ${character.gender}',
                           style: AppTextStyle.characterInfo,
                         ),
                       ],
