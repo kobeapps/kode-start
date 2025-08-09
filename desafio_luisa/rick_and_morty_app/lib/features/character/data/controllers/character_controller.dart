@@ -9,17 +9,26 @@ class CharacterController extends GetxController {
   final characters = <CharacterModel>[].obs;
   final isLoading = false.obs;
 
+  final searchQuery = ''.obs;
+
   @override
   void onInit() {
     super.onInit();
+
+    debounce(
+      searchQuery,
+      (_) => fetchCharacters(query: searchQuery.value),
+      time: const Duration(milliseconds: 500),
+    );
+
     fetchCharacters();
   }
 
-  Future<void> fetchCharacters() async {
+  Future<void> fetchCharacters({String? query}) async {
     try {
       isLoading.value = true;
 
-      final charactersList = await _repository.getCharacters();
+      final charactersList = await _repository.getCharacters(query: query);
       characters.assignAll(charactersList);
     } catch (e) {
       Get.snackbar(
@@ -31,5 +40,9 @@ class CharacterController extends GetxController {
     } finally {
       isLoading.value = false;
     }
+  }
+
+  void onSearchQueryChanged(String query) {
+    searchQuery.value = query;
   }
 }

@@ -6,20 +6,18 @@ import 'package:rick_and_morty_app/core/theme/app_text_style.dart';
 import 'package:rick_and_morty_app/features/character/data/controllers/character_controller.dart';
 import 'package:rick_and_morty_app/features/character/presentation/pages/character_details_page.dart';
 
-class CharacterCardWidget extends StatelessWidget {
+class CharacterCardWidget extends GetView<CharacterController> {
   const CharacterCardWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final CharacterController controller = Get.put(CharacterController());
-
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: UiConstants.cardPadding,
         vertical: UiConstants.defaultSpacing,
       ),
       child: Obx(() {
-        if (controller.isLoading.value) {
+        if (controller.isLoading.value && controller.characters.isEmpty) {
           return Center(
             child: CircularProgressIndicator(color: AppColors.card),
           );

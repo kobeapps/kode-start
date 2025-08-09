@@ -2,7 +2,7 @@ import 'package:rick_and_morty_app/features/character/data/datasources/datasourc
 import 'package:rick_and_morty_app/features/character/data/models/models.dart';
 
 abstract class CharacterRepository {
-  Future<List<CharacterModel>> getCharacters();
+  Future<List<CharacterModel>> getCharacters({String? query});
   Future<EpisodesModel> getEpisode(String url);
 }
 
@@ -12,9 +12,11 @@ class CharacterRepositoryImpl implements CharacterRepository {
   CharacterRepositoryImpl({required this.datasource});
 
   @override
-  Future<List<CharacterModel>> getCharacters() async {
+  Future<List<CharacterModel>> getCharacters({String? query}) async {
     try {
-      final characterModels = await datasource.getCharacterFromApi();
+      final characterModels = await datasource.getCharacterFromApi(
+        query: query,
+      );
 
       return characterModels;
     } catch (e) {
