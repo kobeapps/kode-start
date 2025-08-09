@@ -10,6 +10,16 @@ import 'package:rick_and_morty_app/features/character/data/models/models.dart';
 class CharacterDetailsPage extends StatelessWidget {
   const CharacterDetailsPage({super.key});
 
+  Color _getStatusColor(String status) {
+    if (status == 'Alive') {
+      return AppColors.circleAlive;
+    } else if (status == 'Dead') {
+      return AppColors.circleDead;
+    } else {
+      return AppColors.circleUnknown; // Para o status "unknown"
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final CharacterModel character = Get.arguments;
@@ -69,7 +79,7 @@ class CharacterDetailsPage extends StatelessWidget {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.amber,
+                            color: _getStatusColor(character.status),
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(color: Colors.white, width: 1),
                           ),

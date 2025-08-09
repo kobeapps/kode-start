@@ -20,7 +20,6 @@ class HomePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16),
             child: TextField(
-              // Conectamos o onChanged ao método que criamos no controller
               onChanged: controller.onSearchQueryChanged,
               decoration: InputDecoration(
                 hintText: 'Buscar por nome...',
@@ -34,6 +33,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
           Expanded(child: CharacterCardWidget()),
+          SizedBox(height: 10),
         ],
       ),
     );
