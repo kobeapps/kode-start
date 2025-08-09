@@ -128,7 +128,7 @@ Certifique-se de ter instalado:
 1. **Clone o repositório:**
 
    ```bash
-   git clone https://github.com/seu-usuario/rick_and_morty_app.git
+   git clone https://github.com/Fernanda-Barreto/kode-start.git
      ```
 2. **Acesse a pasta do projeto:**
     ```bash
