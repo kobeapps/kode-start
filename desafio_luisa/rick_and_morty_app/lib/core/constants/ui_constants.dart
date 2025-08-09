@@ -4,4 +4,5 @@ class UiConstants {
   static const double defaultSpacing = 15;
   static const double heightCardHomePage = 190;
   static const double iconSize = 32;
+  static const double cardPadding = 20;
 }
