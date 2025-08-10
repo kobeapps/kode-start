@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rick_and_morty_app/core/theme/app_colors.dart';
-import 'package:rick_and_morty_app/core/widgets/app_bar_widget.dart';
-import 'package:rick_and_morty_app/features/character/data/controllers/character_controller.dart';
-import 'package:rick_and_morty_app/features/character/presentation/widgets/character_card_widget.dart';
+import 'package:rick_and_morty_app/core/core.dart';
+import 'package:rick_and_morty_app/features/character/data/data.dart';
+import 'package:rick_and_morty_app/features/character/presentation/presentation.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
