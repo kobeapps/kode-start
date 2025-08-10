@@ -1,0 +1,88 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "app_rick",
+            "cwd": "app_rick",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "app_rick (profile mode)",
+            "cwd": "app_rick",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "app_rick (release mode)",
+            "cwd": "app_rick",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "flutter_counter_example",
+            "cwd": "projects\\workshop\\flutter_counter_example",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flutter_counter_example (profile mode)",
+            "cwd": "projects\\workshop\\flutter_counter_example",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "flutter_counter_example (release mode)",
+            "cwd": "projects\\workshop\\flutter_counter_example",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "kode_start_imc",
+            "cwd": "projects\\workshop\\kode_start_imc",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "kode_start_imc (profile mode)",
+            "cwd": "projects\\workshop\\kode_start_imc",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "kode_start_imc (release mode)",
+            "cwd": "projects\\workshop\\kode_start_imc",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "kode_start_tmdb",
+            "cwd": "projects\\workshop\\kode_start_tmdb",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "kode_start_tmdb (profile mode)",
+            "cwd": "projects\\workshop\\kode_start_tmdb",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "kode_start_tmdb (release mode)",
+            "cwd": "projects\\workshop\\kode_start_tmdb",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
