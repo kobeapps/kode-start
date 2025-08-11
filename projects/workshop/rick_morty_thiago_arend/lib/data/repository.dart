@@ -19,8 +19,8 @@ abstract class Repository {
     return Episode.fromJson(response.data);
   }
 
-  static Future<PaginatedCharacters> getCharactersByName(String name) async {
-    var response = await _dio.get("/character/?name=$name");
+  static Future<PaginatedCharacters> getCharactersByName(String name, int page) async {
+    var response = await _dio.get("/character/?name=$name&page=$page");
     return PaginatedCharacters.fromJson(response.data);
   }
 }

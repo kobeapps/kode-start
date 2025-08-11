@@ -5,4 +5,5 @@ class AppStrings {
   static const apiFetchErrorMessage = 'Tente novamente mais tarde...';
   static const firstSeenIn = 'First seen in:';
   static const lastKnownLocation = 'Last know location:';
+  static const searchBarPlaceholder = 'Pickle Rick';
 }

@@ -48,7 +48,7 @@ class PreviewCardComponent extends StatelessWidget {
               bottom: 10,
               left: 16,
               child: Text(
-                character.id.toString(),
+                character.name?.toUpperCase() ?? '',
                 style: TextStyle(
                   color: AppColors.white,
                   fontWeight: FontWeight.w900,

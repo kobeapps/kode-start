@@ -15,6 +15,7 @@ class CharacterDetailsScreen extends StatefulWidget {
 }
 
 class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
+
   String resolveStatusText(CharacterStatus status) {
     return status.name[0].toUpperCase() + status.name.substring(1);
   }
