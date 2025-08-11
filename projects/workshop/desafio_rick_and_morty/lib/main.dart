@@ -1,17 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'app.dart';
 
 void main() {
-  runApp(const DesafioRickAndMortyApp());
-}
-
-class DesafioRickAndMortyApp extends StatelessWidget {
-  const DesafioRickAndMortyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(), // Tela vazia, sem conteúdo
-    );
-  }
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const ProviderScope(child: RickAndMortyApp()));
 }
