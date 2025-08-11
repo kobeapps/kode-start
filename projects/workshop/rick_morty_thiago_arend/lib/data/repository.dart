@@ -14,12 +14,12 @@ abstract class Repository {
     return PaginatedCharacters.fromJson(response.data);
   }
 
-  static Future<Episode> getEpisodeByUrl(String routeUrl) async {
-    var response = await _dio.get(routeUrl.replaceAll('https://rickandmortyapi.com/api', ''));
+  static Future<Episode> getEpisodeById(String id) async {
+    var response = await _dio.get('/episode/$id');
     return Episode.fromJson(response.data);
   }
 
-  static Future<PaginatedCharacters> getCharactersByName(String name, int page) async {
+  static Future<PaginatedCharacters> getCharactersByNameAndPage(String name, int page) async {
     var response = await _dio.get("/character/?name=$name&page=$page");
     return PaginatedCharacters.fromJson(response.data);
   }

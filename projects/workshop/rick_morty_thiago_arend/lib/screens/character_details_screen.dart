@@ -15,11 +15,11 @@ class CharacterDetailsScreen extends StatefulWidget {
 }
 
 class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
-  String resolveStatusText(CharacterStatus status) {
+  String _resolveStatusText(CharacterStatus status) {
     return status.name[0].toUpperCase() + status.name.substring(1);
   }
 
-  String resolveStatusIconName(CharacterStatus status) {
+  String _resolveStatusIconName(CharacterStatus status) {
     switch (status) {
       case CharacterStatus.alive:
         return AppImages.aliveEllipsis;
@@ -30,8 +30,8 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
     }
   }
 
-  Future<Episode> resolveEpisodeName(Character character) async {
-    return await Repository.getEpisodeByUrl(character.episode.first);
+  Future<Episode> _resolveEpisodeName(Character character) async {
+    return await Repository.getEpisodeById(character.episode.first.substring(40));
   }
 
   @override
@@ -83,12 +83,12 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset(
-                        resolveStatusIconName(character.status),
+                        _resolveStatusIconName(character.status),
                         width: 8,
                       ),
                       SizedBox(width: 6),
                       Text(
-                        '${resolveStatusText(character.status)} - ${character.species}',
+                        '${_resolveStatusText(character.status)} - ${character.species}',
                         style: TextStyle(
                           color: AppColors.white,
                           fontWeight: FontWeight.w900,
@@ -116,7 +116,7 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
                     style: TextStyle(color: AppColors.white, fontSize: 12),
                   ),
                   FutureBuilder(
-                    future: resolveEpisodeName(character),
+                    future: _resolveEpisodeName(character),
                     builder: (context, AsyncSnapshot<Episode> snapshot) {
                       if (snapshot.hasData) {
                         final episodeName = snapshot.data!.name;

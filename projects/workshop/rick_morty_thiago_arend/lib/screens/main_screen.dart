@@ -51,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
       if (_searchText.isEmpty) {
         newData = await Repository.getCharactersByPage(page);
       } else {
-        newData = await Repository.getCharactersByName(_searchText, page);
+        newData = await Repository.getCharactersByNameAndPage(_searchText, page);
       }
 
       setState(() {
