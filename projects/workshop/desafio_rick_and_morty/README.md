@@ -1,4 +1,4 @@
-# Desafio Kode, Rick And Morty - Guia do Projeto
+# Desafio Kobe, Rick And Morty - Guia do Projeto
 
 > **Este projeto faz parte de um desafio técnico da empresa *Kobe*.**
 
