@@ -1,16 +1,45 @@
-# rick_morty_thiago_arend
+# Rick and Morty API
 
-A new Flutter project.
+Conheça mais sobre os personagens do seriado Rick and Morty.
+Pesquise pernagens pelo nome ou veja todos os personages disponíveis.
 
-## Getting Started
+## Sobre o projeto
 
-This project is a starting point for a Flutter application.
+Construído em Flutter, o App foi desenvolvido seguindo uma arquitetura em camadas simples (Layered Structure).  
+Cada pasta contida na raiz lib representa uma camada do projeto.
+- screens: telas da aplicação;
+- theme: strings, cores e imagens
+- components: componentes reutilizáveis
+- data: camada que realiza a conexão com a API
+- models: classes representantes dos modelos de dados da aplicação
 
-A few resources to get you started if this is your first Flutter project:
+Além disso, o projeto procura adotar boas práticas, como:
+- variáveis e métodos semânticos
+- modularização
+- alta coesão e baixo acoplamento
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Como rodar em sua máquina
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 1. Instale o Flutter
+Baixe o SDK do Flutter:
+- https://flutter.dev/docs/get-started/install
+- Extraia o conteúdo para a pasta C:\src\flutter (no Windows)
+- Adicione o caminho C:\src\flutter\bin à variável de ambiente PATH
+
+### 2. Clone este repositório
+git clone https://github.com/thiago-arend/desafio-kode-start-2025.git  
+cd desafio-kode-start-2025
+
+### 3. Instale as dependências
+flutter pub get
+
+### 4. Instale o Android Studio
+Baixe e instale: https://developer.android.com/studio  
+Durante a instalação, marque para instalar o Android SDK e Android Virtual Device (AVD)
+
+### 5. Inicie um simulador Android
+No Android Studio, vá em: Tools > Device Manager  
+Crie e inicie um dispositivo virtual
+
+### 6. Execute o projeto
+flutter run
