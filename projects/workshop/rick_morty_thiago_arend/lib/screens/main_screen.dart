@@ -51,7 +51,10 @@ class _MainScreenState extends State<MainScreen> {
       if (_searchText.isEmpty) {
         newData = await Repository.getCharactersByPage(page);
       } else {
-        newData = await Repository.getCharactersByNameAndPage(_searchText, page);
+        newData = await Repository.getCharactersByNameAndPage(
+          _searchText,
+          page,
+        );
       }
 
       setState(() {
@@ -79,6 +82,40 @@ class _MainScreenState extends State<MainScreen> {
     await _loadCharacters(_currentPage);
   }
 
+  Widget _resolveMainComponent() {
+    if (_allCharacters.isEmpty && !_isLoadingMore) {
+      return Center(
+        child: Text(
+          AppStrings.emptyListResultsPlaceholder,
+          style: TextStyle(color: AppColors.white),
+        ),
+      );
+    } else if (_allCharacters.isEmpty && _isLoadingMore) {
+      return const Center(child: CircularProgressIndicator());
+    } else {
+      return ListView.builder(
+        controller: _scrollController,
+        itemCount: _allCharacters.length + (_isLoadingMore ? 1 : 0),
+        itemBuilder: (context, index) {
+          if (index == _allCharacters.length) {
+            return const Padding(
+              padding: EdgeInsets.all(16),
+              child: Center(child: CircularProgressIndicator()),
+            );
+          }
+
+          return PreviewCardComponent(
+            character: _allCharacters[index],
+            onTap: () => Navigator.of(context).pushNamed(
+              AppRoutes.characterDetailsScreen,
+              arguments: _allCharacters[index],
+            ),
+          );
+        },
+      );
+    }
+  }
+
   @override
   void dispose() {
     _scrollController.dispose();
@@ -100,31 +137,7 @@ class _MainScreenState extends State<MainScreen> {
               },
               hintText: AppStrings.searchBarPlaceholder,
             ),
-            Expanded(
-              child: _allCharacters.isEmpty && !_isLoadingMore
-                  ? const Center(child: CircularProgressIndicator())
-                  : ListView.builder(
-                      controller: _scrollController,
-                      itemCount:
-                          _allCharacters.length + (_isLoadingMore ? 1 : 0),
-                      itemBuilder: (context, index) {
-                        if (index == _allCharacters.length) {
-                          return const Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Center(child: CircularProgressIndicator()),
-                          );
-                        }
-
-                        return PreviewCardComponent(
-                          character: _allCharacters[index],
-                          onTap: () => Navigator.of(context).pushNamed(
-                            AppRoutes.characterDetailsScreen,
-                            arguments: _allCharacters[index],
-                          ),
-                        );
-                      },
-                    ),
-            ),
+            Expanded(child: _resolveMainComponent()),
           ],
         ),
       ),
