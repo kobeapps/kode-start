@@ -15,7 +15,6 @@ class CharacterDetailsScreen extends StatefulWidget {
 }
 
 class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
-
   String resolveStatusText(CharacterStatus status) {
     return status.name[0].toUpperCase() + status.name.substring(1);
   }
@@ -52,7 +51,7 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
                 color: AppColors.primaryColorLight,
               ),
               width: screenWidth,
-              height: 383,
+              height: 423,
             ),
             Container(
               decoration: BoxDecoration(
@@ -63,16 +62,16 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
                 ),
               ),
               width: screenWidth,
-              height: 160,
+              height: 200,
             ),
             Positioned(
-              top: 172,
+              top: 212,
               left: 16,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    character.name ?? '',
+                    character.name?.toUpperCase() ?? '',
                     style: TextStyle(
                       color: AppColors.white,
                       fontWeight: FontWeight.w900,

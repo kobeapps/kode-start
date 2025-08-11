@@ -28,7 +28,7 @@ class PreviewCardComponent extends StatelessWidget {
                 color: AppColors.primaryColorLight,
               ),
               width: screenWidth,
-              height: 160,
+              height: 200,
             ),
             Container(
               decoration: BoxDecoration(
@@ -42,7 +42,7 @@ class PreviewCardComponent extends StatelessWidget {
                 ),
               ),
               width: screenWidth,
-              height: 120,
+              height: 160,
             ),
             Positioned(
               bottom: 10,
