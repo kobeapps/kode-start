@@ -1,14 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:rick_morty_thiago_arend/components/app_bar_component.dart';
+import 'package:rick_morty_thiago_arend/data/repository.dart';
+import 'package:rick_morty_thiago_arend/models/character.dart';
+import 'package:rick_morty_thiago_arend/models/episode.dart';
 import 'package:rick_morty_thiago_arend/theme/app_colors.dart';
 import 'package:rick_morty_thiago_arend/theme/app_images.dart';
+import 'package:rick_morty_thiago_arend/theme/app_strings.dart';
 
-class CharacterDetailsScreen extends StatelessWidget {
+class CharacterDetailsScreen extends StatefulWidget {
   const CharacterDetailsScreen({super.key});
+
+  @override
+  State<CharacterDetailsScreen> createState() => _CharacterDetailsScreenState();
+}
+
+class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
+  String resolveStatusText(CharacterStatus status) {
+    return status.name[0].toUpperCase() + status.name.substring(1);
+  }
+
+  String resolveStatusIconName(CharacterStatus status) {
+    switch (status) {
+      case CharacterStatus.alive:
+        return AppImages.aliveEllipsis;
+      case CharacterStatus.dead:
+        return AppImages.deadEllipsis;
+      case CharacterStatus.unknown:
+        return AppImages.unknownEllipsis;
+    }
+  }
+
+  Future<Episode> resolveEpisodeName(Character character) async {
+    return await Repository.getEpisodeByUrl(character.episode.first);
+  }
 
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
+    final character = ModalRoute.of(context)?.settings.arguments as Character;
 
     return Scaffold(
       appBar: appBarComponent(context),
@@ -28,7 +57,7 @@ class CharacterDetailsScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 image: DecorationImage(
-                  image: AssetImage('assets/img.jpg'),
+                  image: NetworkImage(character.image ?? ''),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -42,7 +71,7 @@ class CharacterDetailsScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'BABY WIZARD',
+                    character.name ?? '',
                     style: TextStyle(
                       color: AppColors.white,
                       fontWeight: FontWeight.w900,
@@ -53,10 +82,13 @@ class CharacterDetailsScreen extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image.asset(AppImages.aliveEllipsis, width: 8),
+                      Image.asset(
+                        resolveStatusIconName(character.status),
+                        width: 8,
+                      ),
                       SizedBox(width: 6),
                       Text(
-                        'Dead - Alien',
+                        '${resolveStatusText(character.status)} - ${character.species}',
                         style: TextStyle(
                           color: AppColors.white,
                           fontWeight: FontWeight.w900,
@@ -67,14 +99,11 @@ class CharacterDetailsScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 16),
                   Text(
-                    'Last know location:',
-                    style: TextStyle(
-                      color: AppColors.white,
-                      fontSize: 12,
-                    ),
+                    AppStrings.lastKnownLocation,
+                    style: TextStyle(color: AppColors.white, fontSize: 12),
                   ),
                   Text(
-                    'Earth (Replacement Dimension)',
+                    character.location?.name ?? '',
                     style: TextStyle(
                       color: AppColors.white,
                       fontWeight: FontWeight.w900,
@@ -83,19 +112,36 @@ class CharacterDetailsScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 16),
                   Text(
-                    'First seen in:',
-                    style: TextStyle(
-                      color: AppColors.white,
-                      fontSize: 12,
-                    ),
+                    AppStrings.firstSeenIn,
+                    style: TextStyle(color: AppColors.white, fontSize: 12),
                   ),
-                  Text(
-                    'Total Rickall',
-                    style: TextStyle(
-                      color: AppColors.white,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 12,
-                    ),
+                  FutureBuilder(
+                    future: resolveEpisodeName(character),
+                    builder: (context, AsyncSnapshot<Episode> snapshot) {
+                      if (snapshot.hasData) {
+                        final episodeName = snapshot.data!.name;
+                        return Text(
+                          episodeName ?? '',
+                          style: TextStyle(
+                            color: AppColors.white,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 12,
+                          ),
+                        );
+                      } else if (snapshot.hasError) {
+                        return Center(
+                          child: Text(
+                            AppStrings.apiFetchErrorMessage,
+                            style: TextStyle(
+                              color: AppColors.white,
+                              fontSize: 12,
+                            ),
+                          ),
+                        );
+                      } else {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                    },
                   ),
                 ],
               ),

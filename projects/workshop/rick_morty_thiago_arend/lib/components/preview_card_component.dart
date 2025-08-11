@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:rick_morty_thiago_arend/app_routes.dart';
+import 'package:rick_morty_thiago_arend/models/character.dart';
 import 'package:rick_morty_thiago_arend/theme/app_colors.dart';
 
 class PreviewCardComponent extends StatelessWidget {
-  const PreviewCardComponent({super.key});
+  const PreviewCardComponent({
+    required this.character,
+    required this.onTap,
+    super.key,
+  });
+
+  final Character character;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
 
     return GestureDetector(
-      onTap: () =>
-          Navigator.of(context).pushNamed(AppRoutes.characterDetailsScreen),
+      onTap: onTap,
       child: Padding(
-        padding: EdgeInsetsGeometry.fromLTRB(20, 15, 20, 0),
+        padding: EdgeInsetsGeometry.only(top: 15),
         child: Stack(
           children: [
             Container(
@@ -31,7 +37,7 @@ class PreviewCardComponent extends StatelessWidget {
                   topRight: Radius.circular(10),
                 ),
                 image: DecorationImage(
-                  image: AssetImage('assets/img.jpg'),
+                  image: NetworkImage(character.image ?? ''),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -42,11 +48,11 @@ class PreviewCardComponent extends StatelessWidget {
               bottom: 10,
               left: 16,
               child: Text(
-                'BABY WIZARD',
+                character.id.toString(),
                 style: TextStyle(
                   color: AppColors.white,
                   fontWeight: FontWeight.w900,
-                  fontSize: 14
+                  fontSize: 14,
                 ),
               ),
             ),
