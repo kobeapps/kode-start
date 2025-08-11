@@ -84,7 +84,7 @@ class CharacterListPageState extends State<CharacterListPage> {
 
   @override
   Widget build(BuildContext context) {
-    const double appBarHeight = 150.82;
+    const double appBarHeight = 130.82;
     final double topPadding = 146.0 - appBarHeight;
 
     return Scaffold(
