@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rick_morty_thiago_arend/app_routes.dart';
 import 'package:rick_morty_thiago_arend/components/app_bar_component.dart';
-import 'package:rick_morty_thiago_arend/components/preview_card_component.dart';
+import 'package:rick_morty_thiago_arend/components/character_preview_component.dart';
 import 'package:rick_morty_thiago_arend/data/repository.dart';
 import 'package:rick_morty_thiago_arend/models/character.dart';
 import 'package:rick_morty_thiago_arend/models/paginated_characters.dart';
@@ -104,7 +104,7 @@ class _MainScreenState extends State<MainScreen> {
             );
           }
 
-          return PreviewCardComponent(
+          return CharacterPreviewComponent(
             character: _allCharacters[index],
             onTap: () => Navigator.of(context).pushNamed(
               AppRoutes.characterDetailsScreen,

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:rick_morty_thiago_arend/models/character.dart';
 import 'package:rick_morty_thiago_arend/theme/app_colors.dart';
 
-class PreviewCardComponent extends StatelessWidget {
-  const PreviewCardComponent({
+class CharacterPreviewComponent extends StatelessWidget {
+  const CharacterPreviewComponent({
     required this.character,
     required this.onTap,
     super.key,
