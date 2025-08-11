@@ -5,6 +5,13 @@
 
 Rick and Morty – REST client em Flutter. Este documento explica visão geral, requisitos, como rodar localmente (Android, iOS e Web), padrões do projeto e dicas de troubleshooting.
 
+
+# Assista meu vídeo explicando o projeto no link abaixo
+
+[➡️ Acesse o vídeo no YouTube](https://youtu.be/CjyEIJut4uI)
+
+
+
 ---
 
 ## 📦 Visão geral
