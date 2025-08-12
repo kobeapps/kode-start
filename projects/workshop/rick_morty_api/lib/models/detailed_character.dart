@@ -1,3 +1,6 @@
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 class DetailedCharacter {
   final int id;
   final String name;
@@ -42,6 +45,21 @@ class DetailedCharacter {
       url: map['url'] as String,
       created: map['created'] as String,
     );
+  }
+
+  Future<String> getFirstSeenIn() async {
+    if (episode.isEmpty) {
+      return 'Unknown episode';
+    }
+    final firstEpisodeUrl = episode.first;
+    final response = await http.get(Uri.parse(firstEpisodeUrl));
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      return data['name'] ?? 'Unknown episode';
+    } else {
+      throw Exception('Failed to fetch first episode');
+    }
   }
 }
 

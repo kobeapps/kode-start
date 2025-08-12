@@ -3,9 +3,13 @@ import 'package:rick_morty_api/theme/app_colors.dart';
 import 'package:rick_morty_api/models/character_list.dart';
 
 class CharacterCard extends StatelessWidget {
-  const CharacterCard({required this.character, required this.onTap, super.key});
+  const CharacterCard({
+    required this.character,
+    required this.onTap,
+    super.key,
+  });
 
-  final Result character; 
+  final Result character;
   final void Function() onTap;
 
   @override
@@ -33,20 +37,13 @@ class CharacterCard extends StatelessWidget {
               child: Text(
                 character.name.toUpperCase(),
                 style: TextStyle(
+                  fontFamily: 'Lato',
+                  fontWeight: FontWeight.w300, 
+                  fontStyle: FontStyle.normal, 
+                  fontSize: 14.5,
+                  height: 1.0,
+                  letterSpacing: 0,
                   color: AppColors.white,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 16,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              child: Text(
-                "Status: ${character.status} | Espécie: ${character.species}",
-                style: TextStyle(
-                  color: AppColors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14,
                 ),
               ),
             ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rick_morty_api/components/app_bar_component.dart';
+import 'package:rick_morty_api/components/app_bar_widget.dart';
 import 'package:rick_morty_api/components/detailed_character_card.dart';
 import 'package:rick_morty_api/data/repository.dart';
 import 'package:rick_morty_api/models/detailed_character.dart';
@@ -27,7 +27,7 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarComponent(context, isSecondPage: true),
+      appBar: const AppBarWidgets(isSecondPage: true),
       backgroundColor: AppColors.backgroundColor,
       body: FutureBuilder(
         future: detaliedCharacter,
@@ -38,7 +38,7 @@ class _DetailsPageState extends State<DetailsPage> {
           } else if (snapshot.hasError) {
             return Center(
               child: Text(
-                "Ocorreu um erro.",
+                'An error occurred.',
                 style: TextStyle(color: AppColors.white),
               ),
             );

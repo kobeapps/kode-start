@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rick_morty_api/components/app_bar_component.dart';
+import 'package:rick_morty_api/components/app_bar_widget.dart';
 import 'package:rick_morty_api/components/character_card.dart';
 import 'package:rick_morty_api/data/repository.dart';
 import 'package:rick_morty_api/models/character_list.dart';
@@ -11,14 +11,15 @@ class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Result> _characters = [];
+  List<Result> _characters = [];
   int _currentPage = 1;
   bool _isLoading = false;
   bool _hasMore = true;
+  bool _isSearching = false;
   late ScrollController _scrollController;
 
   @override
@@ -55,15 +56,39 @@ class _HomePageState extends State<HomePage> {
   void _onScroll() {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent - 200) {
-      _fetchCharacters();
+      if (!_isSearching) {
+        _fetchCharacters();
+      }
     }
+  }
+
+  void _updateCharacters(List<dynamic> filteredCharactersDynamic) {
+    final filteredCharacters = filteredCharactersDynamic.cast<Result>();
+    setState(() {
+      _characters = filteredCharacters;
+      _isSearching = true;
+      _hasMore = false;
+    });
+  }
+
+  void _clearSearch() {
+    setState(() {
+      _characters = [];
+      _currentPage = 1;
+      _hasMore = true;
+      _isSearching = false;
+    });
+    _fetchCharacters();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarComponent(context),
       backgroundColor: AppColors.backgroundColor,
+      appBar: AppBarWidgets(
+        isSecondPage: false,
+        onResultsChanged: _updateCharacters,
+      ),
       body: Scrollbar(
         controller: _scrollController,
         thumbVisibility: true,
@@ -71,32 +96,39 @@ class _HomePageState extends State<HomePage> {
         thickness: 6.0,
         radius: const Radius.circular(3),
         child: ListView.builder(
-        controller: _scrollController,
-        padding: const EdgeInsets.symmetric(vertical: 7.5),
-        itemCount: _characters.length + (_hasMore ? 1 : 0),
-        itemBuilder: (context, index) {
-          if (index == _characters.length) {
-            return const Center(
-              child: Padding(
-                padding: EdgeInsets.all(16),
-                child: CircularProgressIndicator(),
-              ),
-            );
-          }
-
-          final character = _characters[index];
-          return CharacterCard(
-            character: character,
-            onTap: () {
-              Navigator.of(context).pushNamed(
-                DetailsPage.routeId,
-                arguments: character.id,
+          controller: _scrollController,
+          padding: const EdgeInsets.symmetric(vertical: 7.5),
+          itemCount: _characters.length + (_hasMore ? 1 : 0),
+          itemBuilder: (context, index) {
+            if (index == _characters.length) {
+              return const Center(
+                child: Padding(
+                  padding: EdgeInsets.all(16),
+                  child: CircularProgressIndicator(),
+                ),
               );
-            },
-          );
-        },
+            }
+
+            final character = _characters[index];
+            return CharacterCard(
+              character: character,
+              onTap: () {
+                Navigator.of(context).pushNamed(
+                  DetailsPage.routeId,
+                  arguments: character.id,
+                );
+              },
+            );
+          },
+        ),
       ),
-    ),
+      floatingActionButton: _isSearching
+          ? FloatingActionButton(
+              onPressed: _clearSearch,
+              tooltip: 'Clear Search',
+              child: const Icon(Icons.clear),
+            )
+          : null,
     );
   }
 }

@@ -14,10 +14,10 @@ class RMApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const HomePage(), 
+      home: const HomePage(),
       onGenerateRoute: (settings) {
         switch (settings.name) {
-          case DetailsPage.routeId: 
+          case DetailsPage.routeId:
             final movieId = settings.arguments as int;
             return MaterialPageRoute(
               settings: settings,
@@ -28,9 +28,7 @@ class RMApp extends StatelessWidget {
         }
       },
       theme: ThemeData(
-        textTheme: GoogleFonts.latoTextTheme(
-          Theme.of(context).textTheme,
-        ),
+        textTheme: GoogleFonts.latoTextTheme(Theme.of(context).textTheme),
       ),
     );
   }
