@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'detalhe.dart'; 
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -168,8 +169,7 @@ class CharacterListPageState extends State<CharacterListPage> {
             itemBuilder: (context, index) {
               final character = characters[index];
               return CharacterCard(
-                name: character['name'],
-                imageUrl: character['image'],
+                character: character,
               );
             },
           );
@@ -180,61 +180,69 @@ class CharacterListPageState extends State<CharacterListPage> {
 }
 
 class CharacterCard extends StatelessWidget {
-  final String name;
-  final String imageUrl;
+  final dynamic character;
 
   const CharacterCard({
-    required this.name,
-    required this.imageUrl,
+    required this.character,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 320,
-      height: 200,
-      child: Card(
-        color: const Color(0xFFFFFFFF),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        margin: const EdgeInsets.symmetric(vertical: 8.0),
-        clipBehavior: Clip.antiAlias,
-        elevation: 4,
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            Positioned.fill(
-              child: Image.network(
-                imageUrl,
-                fit: BoxFit.cover,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return const Center(child: CircularProgressIndicator());
-                },
-                errorBuilder: (context, error, stackTrace) {
-                  return const Center(
-                      child: Icon(Icons.error, color: Colors.red));
-                },
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(12),
-              color: const Color(0xff87A1FA),
-              child: Text(
-                name.toUpperCase(),
-                textAlign: TextAlign.left,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'Lato',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14.5,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CharacterDetailScreen(character: character),
+          ),
+        );
+      },
+      child: SizedBox(
+        width: 320,
+        height: 200,
+        child: Card(
+          color: const Color(0xFFFFFFFF),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          margin: const EdgeInsets.symmetric(vertical: 8.0),
+          clipBehavior: Clip.antiAlias,
+          elevation: 4,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              Positioned.fill(
+                child: Image.network(
+                  character['image'],
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return const Center(child: CircularProgressIndicator());
+                  },
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Center(
+                        child: Icon(Icons.error, color: Colors.red));
+                  },
                 ),
               ),
-            ),
-          ],
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(12),
+                color: const Color(0xff87A1FA),
+                child: Text(
+                  character['name'].toUpperCase(),
+                  textAlign: TextAlign.left,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Lato',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14.5,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
