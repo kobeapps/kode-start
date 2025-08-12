@@ -12,7 +12,7 @@ Um aplicativo Flutter que consome a [The Rick and Morty API](https://rickandmort
 
 ## 🎥 Demonstração
 
-![Demonstração do Rick and Morty App](.desafio_luisa/rick_and_morty_app/assets/rick_and_morty_demo.gif)
+![Demonstração do Rick and Morty App](desafio_luisa/rick_and_morty_app/assets/rick_and_morty_demo.gif)
 
 ---
 
