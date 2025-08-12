@@ -1,0 +1,7 @@
+
+projects/workshop/app_kobe_alex/build/
+projects/workshop/app_kobe_alex/.dart_tool/
+projects/workshop/app_kobe_alex/android/.gradle/
+projects/workshop/app_kobe_alex/.idea/
+projects/workshop/app_kobe_alex/.vscode/
+projects/workshop/app_kobe_alex/*.log
