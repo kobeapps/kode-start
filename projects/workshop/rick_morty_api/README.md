@@ -16,16 +16,16 @@ Um aplicativo Flutter moderno e interativo para explorar personagens da série R
 ## 📸 Demonstrações
 
 ### Scroll Infinito
-![Scroll Infinito](projects/workshop/rick_morty_api/assets/gifs/1.gif)
+![Scroll Infinito](assets/gifs/1.gif)
 
 ### Informações do Personagem
-![Cards dos Personagens](projects/workshop/rick_morty_api/assets/gifs/2.gif)
+![Cards dos Personagens](assets/gifs/2.gif)
 
 ### Busca por Nome
-![Pesquisa por Nome](projects/workshop/rick_morty_api/assets/gifs/3.gif)
+![Pesquisa por Nome](assets/gifs/3.gif)
 
 ### Filtro por Gênero
-![Pesquisa por Gênero](projects/workshop/rick_morty_api/assets/gifs/4.gif)
+![Pesquisa por Gênero](assets/gifs/4.gif)
 
 ## Como Executar
 
