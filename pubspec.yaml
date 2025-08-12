@@ -1,4 +1,4 @@
-name: kobe_rick_and_morty_app
+name: kobe_desafio_final
 description: "Desafio Flutter da Kobe com a API do Rick and Morty."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
