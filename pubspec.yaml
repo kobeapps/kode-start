@@ -1,0 +1,30 @@
+name: rick_and_morty_flutter_app
+description: A Flutter application to explore characters from the Rick and Morty API.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  http: ^1.2.0
+  provider: ^6.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/logo.png
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/static/Montserrat-Regular.ttf
+        - asset: assets/fonts/static/Montserrat-Bold.ttf
+          weight: 700
